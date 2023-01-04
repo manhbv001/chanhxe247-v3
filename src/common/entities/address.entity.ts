@@ -6,7 +6,7 @@ import {
   BeforeUpdate,
   Column,
   JoinColumn,
-  ManyToOne
+  ManyToOne,
 } from 'typeorm';
 import BaseEntity from './base.entity';
 
@@ -17,7 +17,7 @@ export class AddressEntity extends BaseEntity {
 
   @ManyToOne(() => District)
   @JoinColumn({ name: 'district_id' })
-  district: Province;
+  district: District;
 
   @ManyToOne(() => Ward)
   @JoinColumn({ name: 'ward_id' })

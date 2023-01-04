@@ -35,4 +35,8 @@ export abstract class BaseService<T extends BaseEntity> {
 
     return new SuccessResponse(rs);
   }
+
+  async deleteOne(payload) {
+    return this.repository.softRemove(payload);
+  }
 }
