@@ -26,6 +26,7 @@ export class PickAddressService extends BaseService<PickAddress> {
   }
 
   public async createOrUpdate(
+    id: string | null,
     payload: CreatePickAddressDto,
     requestUser: User
   ) {
@@ -59,6 +60,7 @@ export class PickAddressService extends BaseService<PickAddress> {
         .execute();
     }
 
+    if (id) ins.id = id;
     return this.repository.save(ins);
   }
 

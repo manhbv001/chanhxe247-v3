@@ -1,6 +1,14 @@
 import BaseEntity from 'src/common/entities/base.entity';
 import { ELoadType } from 'src/common/enums/load-type.enum';
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
+  OneToOne,
+} from 'typeorm';
+import { Debt } from '../debt/debt.entity';
 import { PickAddress } from '../pick-address/pick-address.entity';
 import { PriceList } from '../price-list/price-list.entity';
 import { Receiver } from '../receiver/receiver.entity';
@@ -12,27 +20,64 @@ export class Shipment extends BaseEntity {
   @Column({ length: 128 })
   code: string;
 
+  @Column()
   parcel_name: string;
+
+  @Column()
   parcel_value: number;
+
+  @Column()
   parcel_quantity: number;
+
+  @Column()
   parcel_width: number;
+
+  @Column()
   parcel_height: number;
+
+  @Column()
   parcel_length: number;
+
+  @Column()
   parcel_weight: number;
+
+  @Column()
   parcel_conversion_weight: number;
+
+  @Column()
   parcel_note: string;
 
+  @Column()
   is_insured: boolean;
+
+  @Column({ length: 128 })
   loading_type: ELoadType;
+
+  @Column()
   cod_amount: number;
 
+  @Column()
   service_fee: number;
+
+  @Column()
   insurance_fee: number;
+
+  @Column()
   return_fee: number;
+
+  @Column()
   load_fee: number;
+
+  @Column()
   region_pick_fee: number;
+
+  @Column()
   region_deliver_fee: number;
+
+  @Column()
   cod_fee: number;
+
+  @Column()
   total_fee: number;
 
   @OneToOne(() => ShipmentStatus)
@@ -56,4 +101,7 @@ export class Shipment extends BaseEntity {
   @ManyToOne(() => PriceList)
   @JoinColumn({ name: 'price_list_id' })
   price_list: PriceList;
+
+  @ManyToMany(() => Debt, (debt) => debt.shipments)
+  debts: Debt;
 }
