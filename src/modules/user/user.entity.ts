@@ -60,7 +60,7 @@ export class User extends BaseEntity {
   @ManyToMany(() => PriceList, (priceList) => priceList.assigned_partners)
   assigned_price_lists: PriceList[];
 
-  @ManyToOne(() => PriceList, (priceList) => priceList.applied_customers)
+  @ManyToMany(() => PriceList, (priceList) => priceList.applied_customers)
   applied_price_lists: PriceList[];
 
   @BeforeInsert()

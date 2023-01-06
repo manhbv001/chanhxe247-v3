@@ -21,34 +21,34 @@ export class PriceList extends BaseEntity {
   @Column({ length: 128 })
   type: EPriceListType;
 
-  @Column()
+  @Column({ default: 0 })
   suburban_pick_fee: number;
 
-  @Column()
+  @Column({ default: 0 })
   country_pick_fee: number;
 
-  @Column()
+  @Column({ default: 0 })
   suburban_del_fee: number;
 
-  @Column()
+  @Column({ default: 0 })
   country_del_fee: number;
 
-  @Column()
+  @Column({ default: 0 })
   load_fee: number;
 
-  @Column()
+  @Column({ default: EReturnFeeUnit.Percent })
   return_fee_unit: EReturnFeeUnit;
 
-  @Column()
+  @Column({ default: 0 })
   return_fee_value: number;
 
-  @Column()
+  @Column({ default: 0 })
   insurance_fee: number;
 
-  @Column()
+  @Column({ default: 0 })
   insurance_value: number;
 
-  @Column()
+  @Column({ default: 0 })
   min_value: number;
 
   @Column()

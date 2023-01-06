@@ -2,27 +2,23 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from 'src/common/services/base.service';
 import { Repository } from 'typeorm';
 import { District } from '../district/district.entity';
+import { DistrictService } from '../district/district.service';
 import { Province } from '../province/province.entity';
+import { ProvinceService } from '../province/province.service';
 import { User } from '../user/user.entity';
 import { Ward } from '../ward/ward.entity';
+import { WardService } from '../ward/ward.service';
 import { CreatePickAddressDto } from './pick-address.dto';
 import { PickAddress } from './pick-address.entity';
 
 export class PickAddressService extends BaseService<PickAddress> {
-  private readonly wardRepository: Repository<Ward>;
-  private readonly districtRepository: Repository<District>;
-  private readonly provinceRepository: Repository<Province>;
-
   constructor(
     @InjectRepository(PickAddress) repo,
-    @InjectRepository(Ward) wardRepo,
-    @InjectRepository(District) districtRepo,
-    @InjectRepository(Province) provinceRepo
+    private wardService: WardService,
+    private districtService: DistrictService,
+    private provinceService: ProvinceService
   ) {
     super(repo);
-    this.wardRepository = wardRepo;
-    this.districtRepository = districtRepo;
-    this.provinceRepository = provinceRepo;
   }
 
   public async createOrUpdate(
@@ -31,16 +27,22 @@ export class PickAddressService extends BaseService<PickAddress> {
     requestUser: User
   ) {
     const userId = requestUser.parent?.id || requestUser.id;
-    const province = await this.provinceRepository.findOneByOrFail({
-      id: payload.province_id,
+    const { data: province } = await this.provinceService.findOne({
+      where: {
+        id: payload.province_id,
+      },
     });
-    const district = await this.districtRepository.findOneByOrFail({
-      id: payload.district_id,
-      province: { id: province.id },
+    const { data: district } = await this.districtService.findOne({
+      where: {
+        id: payload.district_id,
+        province: { id: province.id },
+      },
     });
-    const ward = await this.wardRepository.findOneByOrFail({
-      id: payload.ward_id,
-      district: { id: district.id },
+    const { data: ward } = await this.wardService.findOne({
+      where: {
+        id: payload.ward_id,
+        district: { id: district.id },
+      },
     });
 
     const ins = new PickAddress();
