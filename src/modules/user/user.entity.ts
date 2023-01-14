@@ -50,6 +50,9 @@ export class User extends BaseEntity {
   @JoinColumn({ name: 'parent_id' })
   parent: User;
 
+  @Column()
+  parent_id: string;
+
   @ManyToOne(() => User, (user) => user.assigned_carrier, { nullable: true })
   @JoinColumn({ name: 'assigned_carrier_id' })
   assigned_carrier: User;

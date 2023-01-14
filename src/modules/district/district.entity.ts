@@ -25,4 +25,7 @@ export class District extends BaseEntity {
   @ManyToOne(() => Province)
   @JoinColumn({ name: 'province_id' })
   province: Province;
+
+  @Column()
+  province_id: string;
 }

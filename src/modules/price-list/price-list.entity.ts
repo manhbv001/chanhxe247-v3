@@ -58,9 +58,15 @@ export class PriceList extends BaseEntity {
   @JoinColumn({ name: 'from_region_id' })
   from_region: Region;
 
+  @Column()
+  from_region_id: string;
+
   @ManyToOne(() => Region)
   @JoinColumn({ name: 'to_region_id' })
   to_region: Region;
+
+  @Column()
+  to_region_id: string;
 
   @ManyToMany(() => User, (user) => user.assigned_price_lists)
   assigned_partners: User[];

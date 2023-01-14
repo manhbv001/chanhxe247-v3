@@ -25,4 +25,7 @@ export class Ward extends BaseEntity {
   @ManyToOne(() => District)
   @JoinColumn({ name: 'district_id' })
   district: District;
+
+  @Column()
+  district_id: string;
 }

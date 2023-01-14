@@ -15,13 +15,22 @@ export class AddressEntity extends BaseEntity {
   @JoinColumn({ name: 'province_id' })
   province: Province;
 
+  @Column()
+  province_id: string;
+
   @ManyToOne(() => District)
   @JoinColumn({ name: 'district_id' })
   district: District;
 
+  @Column()
+  district_id: string;
+
   @ManyToOne(() => Ward)
   @JoinColumn({ name: 'ward_id' })
   ward: Ward;
+
+  @Column()
+  ward_id: string;
 
   @Column({ length: 255 })
   address_line: string;

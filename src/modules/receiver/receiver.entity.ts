@@ -13,4 +13,7 @@ export class Receiver extends AddressEntity {
   @ManyToOne(() => User)
   @JoinColumn({ name: 'customer_id' })
   customer: User;
+
+  @Column()
+  customer_id: string;
 }

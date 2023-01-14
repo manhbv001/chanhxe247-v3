@@ -1,6 +1,6 @@
 import BaseEntity from 'src/common/entities/base.entity';
 import { EDebtStatus, EDebtType } from 'src/common/enums/debt.enums';
-import { Column, Entity, ManyToMany, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne } from 'typeorm';
 import { Shipment } from '../shipment/shipment.entity';
 import { User } from '../user/user.entity';
 
@@ -22,11 +22,19 @@ export class Debt extends BaseEntity {
   paid_amount: number;
 
   @ManyToOne(() => User)
+  @JoinColumn({ name: 'customer_id' })
   customer: User;
 
+  @Column()
+  customer_id: string;
+
   @ManyToOne(() => User)
+  @JoinColumn({ name: 'carrier_id' })
   carrier: User;
 
+  @Column()
+  carrier_id: string;
+
   @ManyToMany(() => Shipment, (shipment) => shipment.debts)
-  shipments: Shipment[]
+  shipments: Shipment[];
 }

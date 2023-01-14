@@ -94,13 +94,22 @@ export class Shipment extends BaseEntity {
   @JoinColumn({ name: 'customer_id' })
   customer: User;
 
+  @Column()
+  customer_id: string;
+
   @ManyToOne(() => User)
   @JoinColumn({ name: 'carrier_id' })
   carrier: User;
 
+  @Column()
+  carrier_id: string;
+
   @ManyToOne(() => PriceList)
   @JoinColumn({ name: 'price_list_id' })
   price_list: PriceList;
+
+  @Column()
+  price_list_id: string;
 
   @ManyToMany(() => Debt, (debt) => debt.shipments)
   debts: Debt;

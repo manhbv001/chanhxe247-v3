@@ -8,7 +8,7 @@ import { PriceList } from './price-list.entity';
 
 export class PriceListService extends BaseService<PriceList> {
   constructor(
-    @InjectRepository(PriceList) repo,
+    @InjectRepository(PriceList) repo: Repository<PriceList>,
     private userService: UserService
   ) {
     super(repo);

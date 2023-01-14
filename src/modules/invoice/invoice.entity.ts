@@ -26,6 +26,9 @@ export class Invoice extends BaseEntity {
   @OneToOne(() => User)
   customer: User;
 
+  @Column()
+  customer_id: string;
+
   @ManyToOne(() => Debt)
   debt: Debt;
 }

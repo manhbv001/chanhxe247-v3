@@ -16,4 +16,7 @@ export class PriceListStep extends BaseEntity {
   @ManyToOne(() => PriceList, (priceList) => priceList.steps)
   @JoinColumn({ name: 'price_list_id' })
   priceList: PriceList;
+
+  @Column()
+  price_list_id: string;
 }

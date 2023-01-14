@@ -9,6 +9,9 @@ export class UserConfig extends BaseEntity {
   @JoinColumn({ name: 'user_id' })
   user: User;
 
+  @Column()
+  user_id: string;
+
   @Column('int', { default: 0 })
   commission: number;
 
