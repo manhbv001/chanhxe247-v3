@@ -8,9 +8,9 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private service: UserService) {}
 
-  @Post('partners')
-  createPartner(@Body() payload: CreateUserDto) {
-    return this.service.createPartner(payload);
+  @Post('carriers')
+  createCarrier(@Body() payload: CreateUserDto) {
+    return this.service.createCarrier(payload);
   }
 
   @Post('customers')

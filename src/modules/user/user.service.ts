@@ -10,7 +10,9 @@ import { User } from './user.entity';
 export class UserService extends BaseService<User> {
   constructor(
     @InjectRepository(User)
-    private repo: Repository<User>
+    repo: Repository<User>,
+    @InjectRepository(UserConfig)
+    private configRepo: Repository<UserConfig>
   ) {
     super(repo);
   }
@@ -48,7 +50,7 @@ export class UserService extends BaseService<User> {
     userConfig.fee_pay_by_shop = payload.fee_pay_by_shop;
     userConfig.delivery_review = payload.delivery_review;
     userConfig.delivery_test = payload.delivery_review;
-    userConfig.weigt_factor = payload.weigt_factor;
+    userConfig.weight_factor = payload.weigt_factor;
 
     const ins = new User();
     ins.name = payload.name;
@@ -62,6 +64,8 @@ export class UserService extends BaseService<User> {
     ins.parent = payload.parent;
     ins.assigned_carrier = assignedCarrier;
     ins.config = userConfig;
+
+    return this.repository.save(ins);
   }
 
   public async createSystemUser(payload: CreateUserDto, requestUser: User) {
@@ -75,11 +79,11 @@ export class UserService extends BaseService<User> {
     return this.create(newPayload);
   }
 
-  public async createPartner(payload: CreateUserDto) {
+  public async createCarrier(payload: CreateUserDto) {
     return this.create({
       ...payload,
       isParent: true,
-      type: EUserType.Partner,
+      type: EUserType.Carrier,
     });
   }
 
@@ -94,5 +98,9 @@ export class UserService extends BaseService<User> {
       assigned_carrier_id: assignCarrierId,
       type: EUserType.Customer,
     });
+  }
+
+  public async getUserConfig(id: string) {
+    return this.configRepo.findOneByOrFail({ user_id: id });
   }
 }

@@ -1,5 +1,5 @@
 export enum EUserType {
   System = 1,
-  Partner = 2,
+  Carrier = 2,
   Customer = 3,
 }

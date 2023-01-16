@@ -57,10 +57,13 @@ export class User extends BaseEntity {
   @JoinColumn({ name: 'assigned_carrier_id' })
   assigned_carrier: User;
 
+  @Column()
+  assigned_carrier_id: string;
+
   @OneToOne(() => UserConfig)
   config: UserConfig;
 
-  @ManyToMany(() => PriceList, (priceList) => priceList.assigned_partners)
+  @ManyToMany(() => PriceList, (priceList) => priceList.assigned_carriers)
   assigned_price_lists: PriceList[];
 
   @ManyToMany(() => PriceList, (priceList) => priceList.applied_customers)

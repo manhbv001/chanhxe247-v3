@@ -69,7 +69,7 @@ export class PriceList extends BaseEntity {
   to_region_id: string;
 
   @ManyToMany(() => User, (user) => user.assigned_price_lists)
-  assigned_partners: User[];
+  assigned_carriers: User[];
 
   @ManyToMany(() => User, (user) => user.applied_price_lists)
   applied_customers: User[];

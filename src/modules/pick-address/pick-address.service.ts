@@ -1,12 +1,8 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from 'src/common/services/base.service';
-import { Repository } from 'typeorm';
-import { District } from '../district/district.entity';
 import { DistrictService } from '../district/district.service';
-import { Province } from '../province/province.entity';
 import { ProvinceService } from '../province/province.service';
 import { User } from '../user/user.entity';
-import { Ward } from '../ward/ward.entity';
 import { WardService } from '../ward/ward.service';
 import { CreatePickAddressDto } from './pick-address.dto';
 import { PickAddress } from './pick-address.entity';

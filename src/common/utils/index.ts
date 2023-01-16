@@ -13,7 +13,7 @@ export class Utils {
   }
 
   public static badRequestExceptionFactory(
-    validationErrors: ValidationError[] = [],
+    validationErrors: ValidationError[] = []
   ) {
     const errors = validationErrors.map((e) => ({
       field: e.property,
@@ -22,5 +22,9 @@ export class Utils {
         .join('\n'),
     }));
     return new BadRequestException(errors);
+  }
+
+  public static roundByUnit(v: number, unitLevel = 1000) {
+    return Math.round(v / unitLevel) * unitLevel;
   }
 }

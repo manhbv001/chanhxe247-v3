@@ -12,8 +12,8 @@ import { Debt } from '../debt/debt.entity';
 import { PickAddress } from '../pick-address/pick-address.entity';
 import { PriceList } from '../price-list/price-list.entity';
 import { Receiver } from '../receiver/receiver.entity';
-import { ShipmentStatus } from '../shipment-status/shipment-status.entity';
 import { User } from '../user/user.entity';
+import { ShipmentStatus } from './shipment-status.entity';
 
 @Entity()
 export class Shipment extends BaseEntity {
@@ -44,14 +44,14 @@ export class Shipment extends BaseEntity {
   @Column()
   parcel_conversion_weight: number;
 
-  @Column()
+  @Column({ default: '' })
   parcel_note: string;
 
-  @Column()
+  @Column({ default: false })
   is_insured: boolean;
 
-  @Column({ length: 128 })
-  loading_type: ELoadType;
+  @Column({ length: 128, nullable: true })
+  loading_type?: ELoadType;
 
   @Column()
   cod_amount: number;

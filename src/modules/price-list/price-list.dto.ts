@@ -1,4 +1,6 @@
 import { IsArray, IsEnum, IsNumber, IsString } from 'class-validator';
+import { EDistrictLevel } from 'src/common/enums/district-level.enum';
+import { ELoadType } from 'src/common/enums/load-type.enum';
 import { EPriceListType } from 'src/common/enums/price-list-type.enum';
 import { EReturnFeeUnit } from 'src/common/enums/return-fee-unit.enum';
 import { PriceListStep } from './price-list-step.entity';
@@ -56,5 +58,16 @@ export class CreatePriceListDto {
   applied_customer_ids: string[];
 
   @IsArray()
-  assigned_partner_ids?: string[];
+  assigned_carrier_ids?: string[];
+}
+
+export class CalcPriceDto {
+  price_list_id: string;
+  parcel_weight: number;
+  parcel_value: number;
+  is_insured: boolean;
+  loading_type?: ELoadType;
+  customer_id: string;
+  from_district_level: EDistrictLevel;
+  to_district_level: EDistrictLevel;
 }

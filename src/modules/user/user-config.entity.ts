@@ -1,3 +1,4 @@
+import { DEFAULT_WEIGHT_FACTOR } from 'src/common/constants/user.constant';
 import BaseEntity from 'src/common/entities/base.entity';
 import { ECommissionType } from 'src/common/enums/commission-type.enum';
 import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
@@ -33,6 +34,6 @@ export class UserConfig extends BaseEntity {
   @Column({ default: false })
   delivery_test: boolean;
 
-  @Column({ default: 5000 })
-  weigt_factor: number;
+  @Column({ default: DEFAULT_WEIGHT_FACTOR })
+  weight_factor: number;
 }

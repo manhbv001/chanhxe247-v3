@@ -1,1 +1,2 @@
 export const DEFAULT_CUSTOMER_CODE = 'BILL';
+export const DEFAULT_WEIGHT_FACTOR = 5000;

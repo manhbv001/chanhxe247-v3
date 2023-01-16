@@ -16,7 +16,7 @@ export abstract class BaseService<T extends BaseEntity> {
   }
 
   async findOne(payload: FindOneOptions<T>): Promise<Response<T>> {
-    const rs = await this.repository.findOne(payload);
+    const rs = await this.repository.findOneOrFail(payload);
 
     return new SuccessResponse(rs);
   }
